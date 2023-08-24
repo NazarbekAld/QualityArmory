@@ -7,10 +7,7 @@ import com.alessiodp.parties.api.interfaces.PartyPlayer;
 import me.zombie_striker.customitemmanager.CustomBaseObject;
 import me.zombie_striker.qg.QAMain;
 import me.zombie_striker.qg.ammo.Ammo;
-import me.zombie_striker.qg.api.QAHeadShotEvent;
-import me.zombie_striker.qg.api.QAWeaponDamageBlockEvent;
-import me.zombie_striker.qg.api.QAWeaponDamageEntityEvent;
-import me.zombie_striker.qg.api.QualityArmory;
+import me.zombie_striker.qg.api.*;
 import me.zombie_striker.qg.armor.BulletProtectionUtil;
 import me.zombie_striker.qg.boundingbox.AbstractBoundingBox;
 import me.zombie_striker.qg.boundingbox.BoundingBoxManager;
@@ -118,6 +115,13 @@ public class GunUtil {
 				if (e instanceof Damageable) {
 					if (QAMain.avoidTypes.contains(e.getType()))
 						continue;
+
+					QAVectorHitEntityEvent hitEntityEvent = new QAVectorHitEntityEvent(p, e);
+					Bukkit.getPluginManager().callEvent(hitEntityEvent);
+
+					if (hitEntityEvent.isCancelled()) {
+						continue;
+					}
 
 					if (e != p && e != p.getVehicle() && e != p.getPassenger()) {
 						double entityDistanceSquared = e.getLocation().distanceSquared(start);

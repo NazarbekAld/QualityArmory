@@ -303,7 +303,7 @@ public class GunYMLLoader {
 					} catch (Error | Exception re52) {
 					}
 					if (weatype.isGun()) {
-						Gun g = new Gun(name, ms);
+						Gun g = new Gun(name, ms, weatype);
 						g.setDisplayname(displayname);
 						g.setCustomLore(extraLore);
 						g.setIngredients(materails);

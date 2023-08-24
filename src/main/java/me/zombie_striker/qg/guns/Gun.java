@@ -143,6 +143,12 @@ public class Gun extends CustomBaseObject implements ArmoryBaseObject, Comparabl
         super(name, id, name, null, true);
     }
 
+    public Gun(String name, MaterialStorage id, WeaponType type) {
+        super(name, id, name, null, true);
+
+        this.type = type;
+    }
+
     @SuppressWarnings("deprecation")
     public static boolean USE_THIS_INSTEAD_OF_INDEVIDUAL_SHOOT_METHODS(Gun g, Player player, double acc, boolean holdingRMB) {
         boolean offhand = QualityArmory.isIronSights(player.getInventory().getItemInHand());
